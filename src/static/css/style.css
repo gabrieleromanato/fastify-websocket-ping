@@ -4,6 +4,18 @@
     box-sizing: border-box;
 }
 
+:root {
+    --button-bg: #1565c0;
+    --button-color: #fff;
+    --body-bg: #fff;
+    --body-color: #000;
+    --element-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    --radius: 4px;
+    --font-sans:  system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+    --font-mono: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+    --app-width: 960px;
+}
+
 *:focus,
 *:active {
     outline-style: none;
@@ -14,15 +26,15 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-sans);
     font-size: 1rem;
-    background: #fff;
-    color: #333;
+    background: var(--body-bg);
+    color: var(--body-color);
 }
 
 input {
     font-size: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
 }
 
 input[type="submit"],
@@ -30,22 +42,24 @@ input[type="text"] {
     display: block;
     margin-bottom: 1rem;
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.85rem 1.3rem;
+    border: none;
 }
 
 input[type="text"] {
-    border: 1px solid #ddd;
-    background-color: #fff;
-    color: #000;
+    box-shadow: var(--element-shadow);
+    background-color: var(--body-bg);
+    color: var(--body-color);
+    border-radius: var(--radius);
 }
 
 input[type="submit"] {
-    border: none;
     text-align: center;
-    background-color: #000;
-    color: #fff;
+    background-color: var(--button-bg);
+    color: var(--button-color);
     letter-spacing: 2px;
     text-transform: uppercase;
+    border-radius: var(--radius);
 }
 
 .hidden {
@@ -67,26 +81,41 @@ input[type="submit"] {
     white-space: pre-wrap;
     word-break: break-word;
     line-height: 1.5;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono);
 }
 
 @media screen and (min-width: 768px) {
+    html, body {
+        height: 100%;
+        min-height: 100vh;
+    }
     #app {
-        max-width: 960px;
+        width: var(--app-width);
+        min-height: 100vh;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    form, #output {
+        width: 100%;
     }
 
     form > div {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
         align-items: center;
     }
 
     form input[type="submit"] {
         width: auto;
+        margin-left: auto;
     }
 
     form input[type="text"] {
-        width: 70%;
+        width: 80%;
     }
 }
