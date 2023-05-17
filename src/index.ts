@@ -3,8 +3,7 @@ import process from "node:process";
 import fastify  from "fastify";
 import { fastifyStatic } from "@fastify/static";
 import websocket from '@fastify/websocket';
-import site  from './routes/site';
-import api from "./routes/api";
+import routes from "./routes";
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 8888;
 
@@ -24,8 +23,7 @@ server.register(fastifyStatic, {
 });
 
 
-server.get('/', site);
-server.get('/ping', { websocket: true }, api);
+server.register(routes);
 
 server.listen({ port: PORT }, (err, address) => {
     if (err) {
